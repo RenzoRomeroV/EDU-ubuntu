@@ -1,0 +1,184 @@
+<div class="dashboard-container">
+  <!-- Sidebar de navegación -->
+  <nav class="sidebar" [class.collapsed]="sidebarCollapsed">
+    <div class="sidebar-header">
+      <div class="ubuntu-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" fill="#E95420" stroke="#FFFFFF" stroke-width="3"/>
+          <circle cx="50" cy="50" r="35" fill="#FFFFFF"/>
+          <circle cx="50" cy="50" r="25" fill="#E95420"/>
+          <circle cx="50" cy="50" r="15" fill="#FFFFFF"/>
+          <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#E95420" font-weight="bold">U</text>
+        </svg>
+        <h2 class="sidebar-title" *ngIf="!sidebarCollapsed">Ubuntu Education</h2>
+      </div>
+      
+      <!-- Botón para contraer/expandir -->
+      <button class="collapse-button" (click)="toggleSidebar()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="menu-list">
+      <li class="menu-item active" (click)="selectModule('inicio')" [title]="sidebarCollapsed ? 'Inicio' : ''">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="menu-text">Inicio</span>
+      </li>
+
+      <li class="menu-item" (click)="selectModule('curso')" [title]="sidebarCollapsed ? 'Curso' : ''">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="menu-text">Curso</span>
+        <div class="submenu-arrow">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+
+      <li class="menu-item" (click)="selectModule('recursos')" [title]="sidebarCollapsed ? 'Recursos' : ''">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21H17ZM17 21V10H13V5H7V19H17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="menu-text">Recursos</span>
+      </li>
+
+      <li class="menu-item" (click)="selectModule('juegos')" [title]="sidebarCollapsed ? 'Juegos' : ''">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="menu-text">Juegos</span>
+      </li>
+
+      <li class="menu-item" (click)="selectModule('contacto')" [title]="sidebarCollapsed ? 'Contacto' : ''">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.60564 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="menu-text">Contacto</span>
+      </li>
+    </ul>
+
+    <!-- Botón Volver al final del menú -->
+    <div class="sidebar-footer">
+      <button class="back-button" (click)="goBack()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span *ngIf="!sidebarCollapsed">Volver</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Área principal de contenido -->
+  <main class="main-content">
+    <div class="content-header">
+      <h1 class="page-title">{{ currentModule.title }}</h1>
+      <p class="page-subtitle">{{ currentModule.subtitle }}</p>
+    </div>
+
+    <div class="content-area">
+      <!-- Vista de Inicio -->
+      <div *ngIf="currentModule.id === 'inicio'" class="inicio-content">
+        <div class="welcome-card">
+          <h2>¡Bienvenido a Ubuntu Education!</h2>
+          <p>Tu plataforma educativa para aprender y crecer. Explora todos los módulos disponibles y comienza tu aventura de aprendizaje.</p>
+        </div>
+
+        <div class="quick-access">
+          <h3>Acceso Rápido</h3>
+          <div class="quick-cards">
+            <div class="quick-card" (click)="selectModule('curso')">
+              <div class="quick-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <span>Ir a Cursos</span>
+            </div>
+            <div class="quick-card" (click)="selectModule('juegos')">
+              <div class="quick-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <span>Jugar</span>
+            </div>
+            <div class="quick-card" (click)="selectModule('recursos')">
+              <div class="quick-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21H17ZM17 21V10H13V5H7V19H17Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <span>Recursos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista de Curso -->
+      <div *ngIf="currentModule.id === 'curso'" class="curso-content">
+        <div class="curso-selection">
+          <h2>Selecciona tu Nivel Educativo</h2>
+          <div class="nivel-cards">
+            <div class="nivel-card" (click)="selectNivel('primaria')">
+              <div class="nivel-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V18C20 18.5304 19.7893 19.0391 19.4142 19.4142C19.0391 19.7893 18.5304 20 18 20H6C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8M16 4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2H10C9.46957 2 8.96086 2.21071 8.58579 2.58579C8.21071 2.96086 8 3.46957 8 4M16 4C16 4.53043 15.7893 5.03914 15.4142 5.41421C15.0391 5.78929 14.5304 6 14 6H10C9.46957 6 8.96086 5.78929 8.58579 5.41421C8.21071 5.03914 8 4.53043 8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Primaria</h3>
+              <p>1° a 6° grado</p>
+            </div>
+            <div class="nivel-card" (click)="selectNivel('secundaria')">
+              <div class="nivel-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Secundaria</h3>
+              <p>7° a 11° grado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista de Recursos -->
+      <div *ngIf="currentModule.id === 'recursos'" class="recursos-content">
+        <h2>Recursos Educativos</h2>
+        <p>Materiales y herramientas para apoyar tu aprendizaje</p>
+      </div>
+
+      <!-- Vista de Juegos -->
+      <div *ngIf="currentModule.id === 'juegos'" class="juegos-content">
+        <h2>Juegos Educativos</h2>
+        <p>Aprende jugando con nuestros juegos interactivos</p>
+      </div>
+
+      <!-- Vista de Contacto -->
+      <div *ngIf="currentModule.id === 'contacto'" class="contacto-content">
+        <h2>Contacto</h2>
+        <p>¿Necesitas ayuda? Contáctanos</p>
+      </div>
+    </div>
+  </main>
+</div>
