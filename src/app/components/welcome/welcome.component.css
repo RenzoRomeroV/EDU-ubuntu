@@ -92,6 +92,9 @@
   align-items: center;
   width: 100%;
   background: rgba(255, 255, 255, 0.15);
+  /* El error en la línea 95 ("backdrop-filter: blur(15px);") es una advertencia común porque Safari y Safari en iOS no soportan esta propiedad sin el prefijo -webkit-. 
+     Para máxima compatibilidad, agrega la siguiente línea antes de backdrop-filter: */
+  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 3rem;

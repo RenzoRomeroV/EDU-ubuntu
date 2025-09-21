@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 interface Module {
   id: string;
@@ -10,12 +11,14 @@ interface Module {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
   sidebarCollapsed = false;
+  selectedNivel: string = '';
+  cursoDropdownOpen = false;
   
   currentModule: Module = {
     id: 'inicio',
@@ -62,12 +65,18 @@ export class DashboardComponent {
   }
 
   selectNivel(nivel: string) {
-    if (nivel === 'primaria') {
-      // Aquí puedes navegar a la vista de primaria
-      console.log('Nivel Primaria seleccionado');
-    } else if (nivel === 'secundaria') {
-      // Aquí puedes navegar a la vista de secundaria
-      console.log('Nivel Secundaria seleccionado');
-    }
+    this.selectedNivel = nivel;
+    console.log(`Nivel ${nivel} seleccionado`);
+  }
+
+  toggleCursoDropdown() {
+    this.cursoDropdownOpen = !this.cursoDropdownOpen;
+    console.log('Curso dropdown open:', this.cursoDropdownOpen);
+  }
+
+  selectCursoSubmodule(submodule: string) {
+    this.selectedNivel = submodule;
+    this.cursoDropdownOpen = false;
+    this.selectModule('curso');
   }
 }

@@ -12,11 +12,17 @@
         </svg>
         <h2 class="sidebar-title" *ngIf="!sidebarCollapsed">Ubuntu Education</h2>
       </div>
-      
-      <!-- Botón para contraer/expandir -->
-      <button class="collapse-button" (click)="toggleSidebar()">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </div>
+
+    <!-- Botón para contraer/expandir debajo del logo -->
+    <div class="collapse-button-container">
+      <!-- 
+        El error en la línea 19 ("Buttons must have discernible text: Element has no title attribute") es una advertencia común de accesibilidad.
+        Para solucionarlo, agrega un atributo title o un texto alternativo para que los lectores de pantalla puedan identificar el propósito del botón.
+      -->
+      <button class="collapse-button" (click)="toggleSidebar()" title="Contraer o expandir menú lateral" aria-label="Contraer o expandir menú lateral">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>
@@ -32,19 +38,44 @@
         <span class="menu-text">Inicio</span>
       </li>
 
-      <li class="menu-item" (click)="selectModule('curso')" [title]="sidebarCollapsed ? 'Curso' : ''">
-        <div class="menu-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <li class="menu-item curso-item" [class.dropdown-open]="cursoDropdownOpen" [title]="sidebarCollapsed ? 'Curso' : ''">
+        <div class="menu-item-content" (click)="toggleCursoDropdown()">
+          <div class="menu-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="menu-text">Curso</span>
+          <div class="submenu-arrow" [class.rotated]="cursoDropdownOpen">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
-        <span class="menu-text">Curso</span>
-        <div class="submenu-arrow">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      </li>
+      
+      <!-- Submódulos que se despliegan/contraen -->
+      <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
+        <div class="submenu-item-red" (click)="selectCursoSubmodule('primaria')">
+          <span class="submenu-text-red">Primaria</span>
+          <!--<div class="submenu-arrow-red">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>-->
+        </div>
+      </li>
+      
+      <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
+        <div class="submenu-item-red" (click)="selectCursoSubmodule('secundaria')">
+          <span class="submenu-text-red">Secundaria</span>
+          <!--<div class="submenu-arrow-red">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>-->
         </div>
       </li>
 
@@ -82,7 +113,7 @@
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span *ngIf="!sidebarCollapsed">Volver</span>
+        <span>Volver</span>
       </button>
     </div>
   </nav>
@@ -135,7 +166,8 @@
 
       <!-- Vista de Curso -->
       <div *ngIf="currentModule.id === 'curso'" class="curso-content">
-        <div class="curso-selection">
+        <!-- Selección de nivel (cuando no hay nivel seleccionado) -->
+        <div *ngIf="!selectedNivel" class="curso-selection">
           <h2>Selecciona tu Nivel Educativo</h2>
           <div class="nivel-cards">
             <div class="nivel-card" (click)="selectNivel('primaria')">
@@ -157,6 +189,117 @@
               </div>
               <h3>Secundaria</h3>
               <p>7° a 11° grado</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido de Primaria -->
+        <div *ngIf="selectedNivel === 'primaria'" class="nivel-content">
+          <div class="nivel-header">
+            <button class="back-to-selection" (click)="selectedNivel = ''">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Volver a selección
+            </button>
+            <h2>🎒 Primaria (1° a 6° grado)</h2>
+            <p>Contenido educativo para estudiantes de primaria</p>
+          </div>
+          
+          <div class="grados-grid">
+            <div class="grado-card">
+              <h3>1° Grado</h3>
+              <p>Fundamentos básicos</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>2° Grado</h3>
+              <p>Desarrollo inicial</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>3° Grado</h3>
+              <p>Consolidación</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>4° Grado</h3>
+              <p>Ampliación</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>5° Grado</h3>
+              <p>Profundización</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>6° Grado</h3>
+              <p>Preparación para secundaria</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido de Secundaria -->
+        <div *ngIf="selectedNivel === 'secundaria'" class="nivel-content">
+          <div class="nivel-header">
+            <button class="back-to-selection" (click)="selectedNivel = ''">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Volver a selección
+            </button>
+            <h2>🎓 Secundaria (7° a 11° grado)</h2>
+            <p>Contenido educativo para estudiantes de secundaria</p>
+          </div>
+          
+          <div class="grados-grid">
+            <div class="grado-card">
+              <h3>7° Grado</h3>
+              <p>Transición a secundaria</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>8° Grado</h3>
+              <p>Desarrollo intermedio</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>9° Grado</h3>
+              <p>Consolidación avanzada</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>10° Grado</h3>
+              <p>Especialización</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
+            </div>
+            <div class="grado-card">
+              <h3>11° Grado</h3>
+              <p>Preparación para universidad</p>
+              <div class="grado-status">
+                <span class="status-badge available">Disponible</span>
+              </div>
             </div>
           </div>
         </div>

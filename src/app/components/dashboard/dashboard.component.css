@@ -20,7 +20,7 @@
 
 /* Sidebar */
 .sidebar {
-  width: 280px;
+  width: 240px;
   background: linear-gradient(180deg, var(--ubuntu-white) 0%, var(--ubuntu-orange-pale) 100%);
   border-right: 1px solid rgba(233, 84, 32, 0.1);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
@@ -30,7 +30,7 @@
 }
 
 .sidebar.collapsed {
-  width: 80px;
+  width: 70px;
 }
 
 .sidebar-header {
@@ -96,11 +96,20 @@
   height: 16px;
 }
 
+/* Contenedor del botón para contraer/expandir */
+.collapse-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(233, 84, 32, 0.1);
+}
+
+.sidebar.collapsed .collapse-button-container {
+  padding: 1rem;
+}
+
 /* Botón para contraer/expandir */
 .collapse-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   background: var(--ubuntu-white);
   border: 2px solid var(--ubuntu-orange-pale);
   border-radius: 8px;
@@ -125,15 +134,6 @@
   height: 20px;
   stroke: var(--ubuntu-orange);
   transition: transform 0.3s ease;
-}
-
-.sidebar.collapsed .collapse-button svg {
-  transform: rotate(180deg);
-}
-
-.sidebar.collapsed .collapse-button {
-  right: 50%;
-  transform: translateX(50%);
 }
 
 /* Lista del menú */
@@ -216,10 +216,153 @@
   width: 0;
 }
 
+.sidebar.collapsed .submenu {
+  display: none;
+}
+
+.sidebar.collapsed .submenu-item-container {
+  display: none;
+}
+
 .submenu-arrow svg {
   width: 14px;
   height: 14px;
   stroke: var(--ubuntu-gray);
+  transition: transform 0.3s ease;
+}
+
+.submenu-arrow.rotated svg {
+  transform: rotate(90deg);
+}
+
+/* Estilos para el menú desplegable de Curso */
+.curso-item {
+  position: relative;
+}
+
+.menu-item-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.curso-item.dropdown-open {
+  background: rgba(233, 84, 32, 0.1);
+  border-left-color: var(--ubuntu-orange);
+}
+
+.curso-item.dropdown-open .menu-text {
+  color: var(--ubuntu-orange);
+  font-weight: 600;
+}
+
+.curso-item.dropdown-open .menu-icon svg {
+  stroke: var(--ubuntu-orange);
+}
+
+/* Contenedor de submódulos */
+.submenu-item-container {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  position: relative;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    max-height: 120px;
+    transform: translateY(0);
+  }
+}
+
+/* Elementos del submódulo rojo */
+.submenu-item-red {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--ubuntu-white);
+  border-left: 4px solid #E95420;
+  width: 100%;
+}
+
+.submenu-item-red:last-child {
+  border-bottom: none;
+}
+
+.submenu-item-red:hover {
+  background: var(--ubuntu-orange-pale);
+  color: var(--ubuntu-orange);
+  font-weight: bold;
+  border-left-color: var(--ubuntu-orange);
+}
+
+/* Texto del submódulo rojo */
+.submenu-text-red {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ubuntu-dark);
+  transition: color 0.3s ease;
+}
+
+/* Flecha del submódulo rojo */
+.submenu-arrow-red {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.submenu-arrow-red svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--ubuntu-gray);
+  transition: stroke 0.3s ease;
+}
+
+.submenu-item-red:hover .submenu-arrow-red svg {
+  stroke: var(--ubuntu-orange);
+}
+
+.submenu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submenu-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ubuntu-gray);
+  transition: stroke 0.3s ease;
+}
+
+.submenu-item:hover .submenu-icon svg {
+  stroke: var(--ubuntu-orange);
+}
+
+.submenu-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ubuntu-dark);
+  display: block;
+  transition: color 0.3s ease;
 }
 
 /* Footer del sidebar */
@@ -241,7 +384,14 @@
 }
 
 .sidebar.collapsed .back-button span {
-  display: none;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.back-button span {
+  transition: all 0.3s ease;
 }
 
 /* Área principal de contenido */
@@ -446,6 +596,126 @@
   margin: 0;
 }
 
+/* Contenido de nivel específico */
+.nivel-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.nivel-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.back-to-selection {
+  background: var(--ubuntu-orange-pale);
+  border: 2px solid var(--ubuntu-orange);
+  color: var(--ubuntu-orange);
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto 2rem auto;
+}
+
+.back-to-selection:hover {
+  background: var(--ubuntu-orange);
+  color: var(--ubuntu-white);
+  transform: translateY(-2px);
+}
+
+.back-to-selection svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nivel-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin: 0 0 1rem 0;
+}
+
+.nivel-header p {
+  font-size: 1.2rem;
+  color: var(--ubuntu-gray);
+  margin: 0;
+}
+
+/* Grid de grados */
+.grados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.grado-card {
+  background: var(--ubuntu-white);
+  border: 2px solid var(--ubuntu-orange-pale);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.grado-card:hover {
+  border-color: var(--ubuntu-orange);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(233, 84, 32, 0.2);
+}
+
+.grado-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.grado-card p {
+  font-size: 1rem;
+  color: var(--ubuntu-gray);
+  margin: 0 0 1.5rem 0;
+}
+
+.grado-status {
+  display: flex;
+  justify-content: center;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.available {
+  background: rgba(34, 197, 94, 0.1);
+  color: #059669;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-badge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.locked {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6B7280;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
 /* Estilos para otros módulos */
 .recursos-content,
 .juegos-content,
@@ -499,6 +769,10 @@
     font-size: 1.1rem;
   }
   
+  .collapse-button-container {
+    padding: 1rem;
+  }
+  
   .menu-list {
     display: flex;
     overflow-x: auto;
@@ -534,6 +808,14 @@
     border-bottom: none;
   }
   
+  .submenu-item-red {
+    padding: 0.75rem 1rem;
+  }
+  
+  .submenu-text-red {
+    font-size: 0.85rem;
+  }
+  
   .menu-text {
     font-size: 0.9rem;
   }
@@ -565,6 +847,14 @@
   .nivel-cards {
     grid-template-columns: 1fr;
   }
+  
+  .grados-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nivel-header h2 {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -590,5 +880,21 @@
   
   .nivel-card {
     padding: 2rem;
+  }
+  
+  .grado-card {
+    padding: 1.5rem;
+  }
+  
+  .nivel-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .submenu-item-red {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .submenu-text-red {
+    font-size: 0.8rem;
   }
 }
