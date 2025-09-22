@@ -1,0 +1,192 @@
+/* Estilos para el contenido de Inicio */
+.inicio-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Título principal */
+.welcome-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.welcome-title h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--ubuntu-dark);
+  line-height: 1.3;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner */
+.banner-container {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.banner-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.banner-image:hover {
+  transform: scale(1.02);
+}
+
+/* Contenedor de Misión y Visión */
+.mision-vision-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Sección de Misión */
+.mision-section {
+  background: linear-gradient(135deg, var(--ubuntu-orange-pale) 0%, var(--ubuntu-white) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.1);
+  border: 1px solid rgba(233, 84, 32, 0.1);
+}
+
+.mision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.mision-text h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-orange);
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+}
+
+.mision-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--ubuntu-dark);
+  margin: 0;
+  text-align: left;
+}
+
+.mision-image {
+  text-align: center;
+}
+
+/* Sección de Visión */
+.vision-section {
+  background: linear-gradient(135deg, var(--ubuntu-white) 0%, var(--ubuntu-orange-pale) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.1);
+  border: 1px solid rgba(233, 84, 32, 0.1);
+}
+
+.vision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.vision-text h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-orange);
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+}
+
+.vision-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--ubuntu-dark);
+  margin: 0;
+  text-align: left;
+}
+
+.vision-image {
+  text-align: center;
+}
+
+/* Imágenes de las secciones */
+.section-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.section-image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome-title h1 {
+    font-size: 2rem;
+  }
+
+  .mision-content,
+  .vision-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mision-text h2,
+  .vision-text h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .mision-text p,
+  .vision-text p {
+    text-align: center;
+  }
+
+  .mision-section,
+  .vision-section {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .mision-text h2,
+  .vision-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .mision-text p,
+  .vision-text p {
+    font-size: 1rem;
+  }
+
+  .mision-section,
+  .vision-section {
+    padding: 1.5rem;
+  }
+
+  .banner-image {
+    border-radius: 10px;
+  }
+
+  .section-image {
+    border-radius: 10px;
+  }
+}

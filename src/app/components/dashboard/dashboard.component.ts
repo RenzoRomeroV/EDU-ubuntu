@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { InicioComponent } from '../inicio/inicio.component';
+import { CursoComponent } from '../curso/curso.component';
+import { RecursosComponent } from '../recursos/recursos.component';
+import { JuegosComponent } from '../juegos/juegos.component';
+import { ContactoComponent } from '../contacto/contacto.component';
 
 interface Module {
   id: string;
@@ -11,7 +16,7 @@ interface Module {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, InicioComponent, CursoComponent, RecursosComponent, JuegosComponent, ContactoComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -23,7 +28,7 @@ export class DashboardComponent {
   currentModule: Module = {
     id: 'inicio',
     title: 'Inicio',
-    subtitle: 'Bienvenido a Ubuntu Education'
+    subtitle: 'Ubuntu Education'
   };
 
   modules: Module[] = [

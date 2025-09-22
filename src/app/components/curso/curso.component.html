@@ -1,0 +1,140 @@
+<!-- Vista de Curso -->
+<div class="curso-content">
+  <!-- Selección de nivel (cuando no hay nivel seleccionado) -->
+  <div *ngIf="!selectedNivel" class="curso-selection">
+    <h2>Selecciona tu Nivel Educativo</h2>
+    <div class="nivel-cards">
+      <div class="nivel-card" (click)="selectNivel('primaria')">
+        <div class="nivel-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V18C20 18.5304 19.7893 19.0391 19.4142 19.4142C19.0391 19.7893 18.5304 20 18 20H6C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8M16 4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2H10C9.46957 2 8.96086 2.21071 8.58579 2.58579C8.21071 2.96086 8 3.46957 8 4M16 4C16 4.53043 15.7893 5.03914 15.4142 5.41421C15.0391 5.78929 14.5304 6 14 6H10C9.46957 6 8.96086 5.78929 8.58579 5.41421C8.21071 5.03914 8 4.53043 8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Primaria</h3>
+        <p>1° a 6° grado</p>
+      </div>
+      <div class="nivel-card" (click)="selectNivel('secundaria')">
+        <div class="nivel-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Secundaria</h3>
+        <p>7° a 11° grado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de Primaria -->
+  <div *ngIf="selectedNivel === 'primaria'" class="nivel-content">
+    <div class="nivel-header">
+      <button class="back-to-selection" (click)="selectedNivel = ''">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver a selección
+      </button>
+      <h2>🎒 Primaria (1° a 6° grado)</h2>
+      <p>Contenido educativo para estudiantes de primaria</p>
+    </div>
+    
+    <div class="grados-grid">
+      <div class="grado-card">
+        <h3>1° Grado</h3>
+        <p>Fundamentos básicos</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>2° Grado</h3>
+        <p>Desarrollo inicial</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>3° Grado</h3>
+        <p>Consolidación</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>4° Grado</h3>
+        <p>Ampliación</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>5° Grado</h3>
+        <p>Profundización</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>6° Grado</h3>
+        <p>Preparación para secundaria</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de Secundaria -->
+  <div *ngIf="selectedNivel === 'secundaria'" class="nivel-content">
+    <div class="nivel-header">
+      <button class="back-to-selection" (click)="selectedNivel = ''">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver a selección
+      </button>
+      <h2>🎓 Secundaria (7° a 11° grado)</h2>
+      <p>Contenido educativo para estudiantes de secundaria</p>
+    </div>
+    
+    <div class="grados-grid">
+      <div class="grado-card">
+        <h3>7° Grado</h3>
+        <p>Transición a secundaria</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>8° Grado</h3>
+        <p>Desarrollo intermedio</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>9° Grado</h3>
+        <p>Consolidación avanzada</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>10° Grado</h3>
+        <p>Especialización</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+      <div class="grado-card">
+        <h3>11° Grado</h3>
+        <p>Preparación para universidad</p>
+        <div class="grado-status">
+          <span class="status-badge available">Disponible</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

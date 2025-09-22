@@ -1,0 +1,238 @@
+/* Variables de colores Ubuntu */
+:root {
+  --ubuntu-orange: #E95420;
+  --ubuntu-orange-light: #F47735;
+  --ubuntu-orange-pale: #FDF6F2;
+  --ubuntu-white: #FFFFFF;
+  --ubuntu-dark: #2C001E;
+  --ubuntu-light-gray: #F7F7F7;
+  --ubuntu-blue: #0073E6;
+  --ubuntu-gray: #6B7280;
+}
+
+/* Estilos para el contenido de Curso */
+.curso-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.curso-selection h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+
+.nivel-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.nivel-card {
+  background: var(--ubuntu-white);
+  border: 2px solid var(--ubuntu-orange-pale);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.nivel-card:hover {
+  border-color: var(--ubuntu-orange);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(233, 84, 32, 0.25);
+}
+
+.nivel-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem auto;
+  background: linear-gradient(135deg, var(--ubuntu-orange-pale) 0%, rgba(233, 84, 32, 0.1) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nivel-card:hover .nivel-icon {
+  background: linear-gradient(135deg, var(--ubuntu-orange) 0%, var(--ubuntu-orange-light) 100%);
+  transform: scale(1.1);
+}
+
+.nivel-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--ubuntu-orange);
+  transition: stroke 0.3s ease;
+}
+
+.nivel-card:hover .nivel-icon svg {
+  stroke: var(--ubuntu-white);
+}
+
+.nivel-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.nivel-card p {
+  font-size: 1rem;
+  color: var(--ubuntu-gray);
+  margin: 0;
+}
+
+/* Contenido de nivel específico */
+.nivel-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.nivel-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.back-to-selection {
+  background: var(--ubuntu-orange-pale);
+  border: 2px solid var(--ubuntu-orange);
+  color: var(--ubuntu-orange);
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto 2rem auto;
+}
+
+.back-to-selection:hover {
+  background: var(--ubuntu-orange);
+  color: var(--ubuntu-white);
+  transform: translateY(-2px);
+}
+
+.back-to-selection svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nivel-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin: 0 0 1rem 0;
+}
+
+.nivel-header p {
+  font-size: 1.2rem;
+  color: var(--ubuntu-gray);
+  margin: 0;
+}
+
+/* Grid de grados */
+.grados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.grado-card {
+  background: var(--ubuntu-white);
+  border: 2px solid var(--ubuntu-orange-pale);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.grado-card:hover {
+  border-color: var(--ubuntu-orange);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(233, 84, 32, 0.2);
+}
+
+.grado-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.grado-card p {
+  font-size: 1rem;
+  color: var(--ubuntu-gray);
+  margin: 0 0 1.5rem 0;
+}
+
+.grado-status {
+  display: flex;
+  justify-content: center;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.available {
+  background: rgba(34, 197, 94, 0.1);
+  color: #059669;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-badge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.locked {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6B7280;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nivel-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .grados-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nivel-header h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nivel-card {
+    padding: 2rem;
+  }
+
+  .grado-card {
+    padding: 1.5rem;
+  }
+
+  .nivel-header h2 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,35 @@
+/* Variables de colores Ubuntu */
+:root {
+  --ubuntu-orange: #E95420;
+  --ubuntu-orange-light: #F47735;
+  --ubuntu-orange-pale: #FDF6F2;
+  --ubuntu-white: #FFFFFF;
+  --ubuntu-dark: #2C001E;
+  --ubuntu-light-gray: #F7F7F7;
+  --ubuntu-blue: #0073E6;
+  --ubuntu-gray: #6B7280;
+}
+
+/* Estilos para otros módulos */
+.juegos-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem;
+  background: var(--ubuntu-white);
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.juegos-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ubuntu-dark);
+  margin-bottom: 1rem;
+}
+
+.juegos-content p {
+  font-size: 1.2rem;
+  color: var(--ubuntu-gray);
+  margin: 0;
+}

@@ -10,23 +10,77 @@
   --ubuntu-gray: #6B7280;
 }
 
+/* Reset para el dashboard */
+.dashboard-container * {
+  box-sizing: border-box;
+}
+
+.dashboard-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* Contenedor principal */
 .dashboard-container {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--ubuntu-light-gray);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw;
+  max-width: 100vw;
 }
 
 /* Sidebar */
 .sidebar {
   width: 240px;
-  background: linear-gradient(180deg, var(--ubuntu-white) 0%, var(--ubuntu-orange-pale) 100%);
-  border-right: 1px solid rgba(233, 84, 32, 0.1);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  background: rgba(233, 84, 32, 0.3);
+  border-right: 1px solid rgba(233, 84, 32, 0.2);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
+  overflow-y: auto;
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  left: 0 !important;
+  top: 0 !important;
+  border-left: none !important;
+}
+
+/* Scroll oculto para el sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Para Firefox */
+.sidebar {
+  scrollbar-width: none;
+}
+
+/* Para IE/Edge */
+.sidebar {
+  -ms-overflow-style: none;
 }
 
 .sidebar.collapsed {
@@ -35,7 +89,7 @@
 
 .sidebar-header {
   padding: 2rem 1.5rem;
-  border-bottom: 1px solid rgba(233, 84, 32, 0.1);
+  border-bottom: 1px solid rgba(233, 84, 32, 0.2);
   position: relative;
 }
 
@@ -45,6 +99,7 @@
 
 .ubuntu-logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
@@ -56,17 +111,25 @@
   margin-bottom: 1rem;
 }
 
-.ubuntu-logo svg {
-  width: 50px;
-  height: 50px;
+.logo-image {
+  width: 80%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
+  background: transparent;
+  padding: 0;
 }
 
 .sidebar-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--ubuntu-dark);
+  color: var(--ubuntu-white);
   margin: 0;
   transition: opacity 0.3s ease;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .back-button {
@@ -101,7 +164,7 @@
   display: flex;
   justify-content: center;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(233, 84, 32, 0.1);
+  border-bottom: 1px solid rgba(233, 84, 32, 0.2);
 }
 
 .sidebar.collapsed .collapse-button-container {
@@ -111,7 +174,7 @@
 /* Botón para contraer/expandir */
 .collapse-button {
   background: var(--ubuntu-white);
-  border: 2px solid var(--ubuntu-orange-pale);
+  border: 2px solid var(--ubuntu-orange);
   border-radius: 8px;
   width: 40px;
   height: 40px;
@@ -124,16 +187,20 @@
 }
 
 .collapse-button:hover {
-  background: var(--ubuntu-orange-pale);
+  background: var(--ubuntu-orange);
   border-color: var(--ubuntu-orange);
   transform: scale(1.05);
+}
+
+.collapse-button:hover svg {
+  stroke: var(--ubuntu-white);
 }
 
 .collapse-button svg {
   width: 20px;
   height: 20px;
   stroke: var(--ubuntu-orange);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Lista del menú */
@@ -155,22 +222,22 @@
 }
 
 .menu-item:hover {
-  background: rgba(233, 84, 32, 0.05);
-  border-left-color: var(--ubuntu-orange-light);
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--ubuntu-white);
 }
 
 .menu-item.active {
-  background: rgba(233, 84, 32, 0.1);
-  border-left-color: var(--ubuntu-orange);
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: var(--ubuntu-white);
 }
 
 .menu-item.active .menu-text {
-  color: var(--ubuntu-orange);
+  color: var(--ubuntu-white);
   font-weight: 600;
 }
 
 .menu-item.active .menu-icon svg {
-  stroke: var(--ubuntu-orange);
+  stroke: var(--ubuntu-white);
 }
 
 .menu-icon {
@@ -185,17 +252,19 @@
 .menu-icon svg {
   width: 20px;
   height: 20px;
-  stroke: var(--ubuntu-gray);
+  stroke: var(--ubuntu-white);
   transition: stroke 0.3s ease;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .menu-text {
   flex: 1;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--ubuntu-dark);
+  color: var(--ubuntu-white);
   transition: all 0.3s ease;
   opacity: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar.collapsed .menu-text {
@@ -227,8 +296,9 @@
 .submenu-arrow svg {
   width: 14px;
   height: 14px;
-  stroke: var(--ubuntu-gray);
+  stroke: var(--ubuntu-white);
   transition: transform 0.3s ease;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .submenu-arrow.rotated svg {
@@ -248,17 +318,17 @@
 }
 
 .curso-item.dropdown-open {
-  background: rgba(233, 84, 32, 0.1);
-  border-left-color: var(--ubuntu-orange);
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: var(--ubuntu-white);
 }
 
 .curso-item.dropdown-open .menu-text {
-  color: var(--ubuntu-orange);
+  color: var(--ubuntu-white);
   font-weight: 600;
 }
 
 .curso-item.dropdown-open .menu-icon svg {
-  stroke: var(--ubuntu-orange);
+  stroke: var(--ubuntu-white);
 }
 
 /* Contenedor de submódulos */
@@ -368,7 +438,7 @@
 /* Footer del sidebar */
 .sidebar-footer {
   padding: 1.5rem;
-  border-top: 1px solid rgba(233, 84, 32, 0.1);
+  border-top: 1px solid rgba(233, 84, 32, 0.2);
   display: flex;
   justify-content: center;
 }
@@ -400,6 +470,36 @@
   display: flex;
   flex-direction: column;
   background: var(--ubuntu-white);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scroll oculto para el main content */
+.main-content::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Para Firefox */
+.main-content {
+  scrollbar-width: none;
+}
+
+/* Para IE/Edge */
+.main-content {
+  -ms-overflow-style: none;
 }
 
 .content-header {
@@ -424,98 +524,141 @@
 .content-area {
   flex: 1;
   padding: 3rem;
-  overflow-y: auto;
 }
 
 /* Estilos para el contenido de Inicio */
 .inicio-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.welcome-card {
-  background: linear-gradient(135deg, var(--ubuntu-orange) 0%, var(--ubuntu-orange-light) 100%);
-  color: var(--ubuntu-white);
-  padding: 3rem;
-  border-radius: 20px;
+/* Título principal */
+.welcome-title {
   text-align: center;
   margin-bottom: 3rem;
-  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.3);
+  padding: 2rem 0;
 }
 
-.welcome-card h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-}
-
-.welcome-card p {
-  font-size: 1.2rem;
-  opacity: 0.9;
+.welcome-title h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--ubuntu-dark);
+  line-height: 1.3;
   margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.quick-access h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--ubuntu-dark);
-  margin: 0 0 2rem 0;
-}
-
-.quick-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.quick-card {
-  background: var(--ubuntu-white);
-  border: 2px solid var(--ubuntu-orange-pale);
-  border-radius: 15px;
-  padding: 2rem;
+/* Banner */
+.banner-container {
   text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 4rem;
 }
 
-.quick-card:hover {
-  border-color: var(--ubuntu-orange);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(233, 84, 32, 0.2);
+.banner-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
-.quick-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 1rem auto;
-  background: var(--ubuntu-orange-pale);
-  border-radius: 50%;
+.banner-image:hover {
+  transform: scale(1.02);
+}
+
+/* Contenedor de Misión y Visión */
+.mision-vision-container {
   display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Sección de Misión */
+.mision-section {
+  background: linear-gradient(135deg, var(--ubuntu-orange-pale) 0%, var(--ubuntu-white) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.1);
+  border: 1px solid rgba(233, 84, 32, 0.1);
+}
+
+.mision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
 }
 
-.quick-card:hover .quick-icon {
-  background: var(--ubuntu-orange);
+.mision-text h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-orange);
+  margin: 0 0 1.5rem 0;
+  text-align: left;
 }
 
-.quick-icon svg {
-  width: 30px;
-  height: 30px;
-  stroke: var(--ubuntu-orange);
-  transition: stroke 0.3s ease;
-}
-
-.quick-card:hover .quick-icon svg {
-  stroke: var(--ubuntu-white);
-}
-
-.quick-card span {
+.mision-text p {
   font-size: 1.1rem;
-  font-weight: 600;
+  line-height: 1.7;
   color: var(--ubuntu-dark);
+  margin: 0;
+  text-align: left;
+}
+
+.mision-image {
+  text-align: center;
+}
+
+/* Sección de Visión */
+.vision-section {
+  background: linear-gradient(135deg, var(--ubuntu-white) 0%, var(--ubuntu-orange-pale) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(233, 84, 32, 0.1);
+  border: 1px solid rgba(233, 84, 32, 0.1);
+}
+
+.vision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.vision-text h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ubuntu-orange);
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+}
+
+.vision-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--ubuntu-dark);
+  margin: 0;
+  text-align: left;
+}
+
+.vision-image {
+  text-align: center;
+}
+
+/* Imágenes de las secciones */
+.section-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.section-image:hover {
+  transform: scale(1.05);
 }
 
 /* Estilos para el contenido de Curso */
@@ -746,15 +889,19 @@
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;
+    height: 100vh;
   }
   
   .sidebar {
     width: 100%;
-    min-height: auto;
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
   }
   
   .sidebar.collapsed {
     width: 100%;
+    max-height: 80px;
   }
   
   .sidebar-header {
@@ -855,6 +1002,33 @@
   .nivel-header h2 {
     font-size: 1.8rem;
   }
+
+  /* Responsive para Inicio */
+  .welcome-title h1 {
+    font-size: 2rem;
+  }
+
+  .mision-content,
+  .vision-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mision-text h2,
+  .vision-text h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .mision-text p,
+  .vision-text p {
+    text-align: center;
+  }
+
+  .mision-section,
+  .vision-section {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -896,5 +1070,33 @@
   
   .submenu-text-red {
     font-size: 0.8rem;
+  }
+
+  /* Responsive para Inicio en móviles */
+  .welcome-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .mision-text h2,
+  .vision-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .mision-text p,
+  .vision-text p {
+    font-size: 1rem;
+  }
+
+  .mision-section,
+  .vision-section {
+    padding: 1.5rem;
+  }
+
+  .banner-image {
+    border-radius: 10px;
+  }
+
+  .section-image {
+    border-radius: 10px;
   }
 }

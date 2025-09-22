@@ -3,14 +3,8 @@
   <nav class="sidebar" [class.collapsed]="sidebarCollapsed">
     <div class="sidebar-header">
       <div class="ubuntu-logo">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="45" fill="#E95420" stroke="#FFFFFF" stroke-width="3"/>
-          <circle cx="50" cy="50" r="35" fill="#FFFFFF"/>
-          <circle cx="50" cy="50" r="25" fill="#E95420"/>
-          <circle cx="50" cy="50" r="15" fill="#FFFFFF"/>
-          <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#E95420" font-weight="bold">U</text>
-        </svg>
-        <h2 class="sidebar-title" *ngIf="!sidebarCollapsed">Ubuntu Education</h2>
+        <img src="assets/img/logoMenu3.png" alt="Ubuntu Education Logo" class="logo-image">
+        <!--<h2 class="sidebar-title" *ngIf="!sidebarCollapsed">Ubuntu Education</h2>-->
       </div>
     </div>
 
@@ -60,22 +54,12 @@
       <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
         <div class="submenu-item-red" (click)="selectCursoSubmodule('primaria')">
           <span class="submenu-text-red">Primaria</span>
-          <!--<div class="submenu-arrow-red">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>-->
         </div>
       </li>
       
       <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
         <div class="submenu-item-red" (click)="selectCursoSubmodule('secundaria')">
           <span class="submenu-text-red">Secundaria</span>
-          <!--<div class="submenu-arrow-red">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>-->
         </div>
       </li>
 
@@ -127,201 +111,19 @@
 
     <div class="content-area">
       <!-- Vista de Inicio -->
-      <div *ngIf="currentModule.id === 'inicio'" class="inicio-content">
-        <div class="welcome-card">
-          <h2>¡Bienvenido a Ubuntu Education!</h2>
-          <p>Tu plataforma educativa para aprender y crecer. Explora todos los módulos disponibles y comienza tu aventura de aprendizaje.</p>
-        </div>
-
-        <div class="quick-access">
-          <h3>Acceso Rápido</h3>
-          <div class="quick-cards">
-            <div class="quick-card" (click)="selectModule('curso')">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </div>
-              <span>Ir a Cursos</span>
-            </div>
-            <div class="quick-card" (click)="selectModule('juegos')">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </div>
-              <span>Jugar</span>
-            </div>
-            <div class="quick-card" (click)="selectModule('recursos')">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21H17ZM17 21V10H13V5H7V19H17Z" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </div>
-              <span>Recursos</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-inicio *ngIf="currentModule.id === 'inicio'"></app-inicio>
 
       <!-- Vista de Curso -->
-      <div *ngIf="currentModule.id === 'curso'" class="curso-content">
-        <!-- Selección de nivel (cuando no hay nivel seleccionado) -->
-        <div *ngIf="!selectedNivel" class="curso-selection">
-          <h2>Selecciona tu Nivel Educativo</h2>
-          <div class="nivel-cards">
-            <div class="nivel-card" (click)="selectNivel('primaria')">
-              <div class="nivel-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V18C20 18.5304 19.7893 19.0391 19.4142 19.4142C19.0391 19.7893 18.5304 20 18 20H6C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8M16 4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2H10C9.46957 2 8.96086 2.21071 8.58579 2.58579C8.21071 2.96086 8 3.46957 8 4M16 4C16 4.53043 15.7893 5.03914 15.4142 5.41421C15.0391 5.78929 14.5304 6 14 6H10C9.46957 6 8.96086 5.78929 8.58579 5.41421C8.21071 5.03914 8 4.53043 8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>Primaria</h3>
-              <p>1° a 6° grado</p>
-            </div>
-            <div class="nivel-card" (click)="selectNivel('secundaria')">
-              <div class="nivel-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>Secundaria</h3>
-              <p>7° a 11° grado</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contenido de Primaria -->
-        <div *ngIf="selectedNivel === 'primaria'" class="nivel-content">
-          <div class="nivel-header">
-            <button class="back-to-selection" (click)="selectedNivel = ''">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Volver a selección
-            </button>
-            <h2>🎒 Primaria (1° a 6° grado)</h2>
-            <p>Contenido educativo para estudiantes de primaria</p>
-          </div>
-          
-          <div class="grados-grid">
-            <div class="grado-card">
-              <h3>1° Grado</h3>
-              <p>Fundamentos básicos</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>2° Grado</h3>
-              <p>Desarrollo inicial</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>3° Grado</h3>
-              <p>Consolidación</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>4° Grado</h3>
-              <p>Ampliación</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>5° Grado</h3>
-              <p>Profundización</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>6° Grado</h3>
-              <p>Preparación para secundaria</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contenido de Secundaria -->
-        <div *ngIf="selectedNivel === 'secundaria'" class="nivel-content">
-          <div class="nivel-header">
-            <button class="back-to-selection" (click)="selectedNivel = ''">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Volver a selección
-            </button>
-            <h2>🎓 Secundaria (7° a 11° grado)</h2>
-            <p>Contenido educativo para estudiantes de secundaria</p>
-          </div>
-          
-          <div class="grados-grid">
-            <div class="grado-card">
-              <h3>7° Grado</h3>
-              <p>Transición a secundaria</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>8° Grado</h3>
-              <p>Desarrollo intermedio</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>9° Grado</h3>
-              <p>Consolidación avanzada</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>10° Grado</h3>
-              <p>Especialización</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-            <div class="grado-card">
-              <h3>11° Grado</h3>
-              <p>Preparación para universidad</p>
-              <div class="grado-status">
-                <span class="status-badge available">Disponible</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-curso *ngIf="currentModule.id === 'curso'"></app-curso>
 
       <!-- Vista de Recursos -->
-      <div *ngIf="currentModule.id === 'recursos'" class="recursos-content">
-        <h2>Recursos Educativos</h2>
-        <p>Materiales y herramientas para apoyar tu aprendizaje</p>
-      </div>
+      <app-recursos *ngIf="currentModule.id === 'recursos'"></app-recursos>
 
       <!-- Vista de Juegos -->
-      <div *ngIf="currentModule.id === 'juegos'" class="juegos-content">
-        <h2>Juegos Educativos</h2>
-        <p>Aprende jugando con nuestros juegos interactivos</p>
-      </div>
+      <app-juegos *ngIf="currentModule.id === 'juegos'"></app-juegos>
 
       <!-- Vista de Contacto -->
-      <div *ngIf="currentModule.id === 'contacto'" class="contacto-content">
-        <h2>Contacto</h2>
-        <p>¿Necesitas ayuda? Contáctanos</p>
-      </div>
+      <app-contacto *ngIf="currentModule.id === 'contacto'"></app-contacto>
     </div>
   </main>
 </div>
