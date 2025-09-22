@@ -6,5 +6,7 @@ export const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/:module', component: DashboardComponent },
+  { path: 'dashboard/:module/:submodule', component: DashboardComponent },
   { path: '**', redirectTo: '' }
 ];
