@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/:module', component: DashboardComponent },
   { path: 'dashboard/:module/:submodule', component: DashboardComponent },
+  { path: 'dashboard/:module/:submodule/:course', component: DashboardComponent },
   { path: '**', redirectTo: '' }
 ];

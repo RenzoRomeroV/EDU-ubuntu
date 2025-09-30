@@ -27,8 +27,8 @@
     </div>
   </div>
 
-  <!-- Contenido de Primaria -->
-  <div *ngIf="selectedNivel === 'primaria'" class="nivel-content">
+  <!-- Contenido de Primaria: Lista de cursos -->
+  <div *ngIf="selectedNivel === 'primaria' && !selectedCourse" class="nivel-content">
     <div class="nivel-header">
       <button class="back-to-selection" (click)="selectedNivel = ''">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,48 +39,67 @@
       <h2>🎒 Primaria (1° a 6° grado)</h2>
       <p>Contenido educativo para estudiantes de primaria</p>
     </div>
-    
+
+    <!-- Cursos de Primaria -->
     <div class="grados-grid">
-      <div class="grado-card">
-        <h3>1° Grado</h3>
-        <p>Fundamentos básicos</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
+      <div class="grado-card curso-card" (click)="openCourse('matematica')">
+        <img src="assets/img/portada-ubuntu.png" alt="Matemática" class="curso-thumb">
+        <h3>Matemática</h3>
+        <p>Números, operaciones y resolución de problemas</p>
+      </div>
+      <div class="grado-card curso-card" (click)="openCourse('algebra')">
+        <img src="assets/img/portada-ubuntu.png" alt="Álgebra" class="curso-thumb">
+        <h3>Álgebra</h3>
+        <p>Expresiones, ecuaciones y patrones</p>
+      </div>
+      <div class="grado-card curso-card" (click)="openCourse('ingles')">
+        <img src="assets/img/portada-ubuntu.png" alt="Inglés" class="curso-thumb">
+        <h3>Inglés</h3>
+        <p>Lectura, escritura y vocabulario</p>
+      </div>
+      <div class="grado-card curso-card" (click)="openCourse('comunicacion')">
+        <img src="assets/img/portada-ubuntu.png" alt="Comunicación" class="curso-thumb">
+        <h3>Comunicación</h3>
+        <p>Comprensión lectora y expresión oral</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalle de curso (Primaria) -->
+  <div *ngIf="selectedNivel === 'primaria' && selectedCourse" class="nivel-content">
+    <div class="detalle-header">
+      <div class="detalle-left">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a [routerLink]="['/dashboard','curso']" class="crumb">Curso</a>
+          <span class="crumb-sep">›</span>
+          <a [routerLink]="['/dashboard','curso','primaria']" class="crumb">Primaria</a>
+          <span class="crumb-sep">›</span>
+          <span class="crumb current">{{ selectedCourse | titlecase }}</span>
+        </nav>
+      </div>
+      <div class="detalle-center">
+        <h2 class="detalle-title">{{ selectedCourse | titlecase }} - Primaria</h2>
+      </div>
+      <div class="detalle-right docente-info">
+        <img src="assets/img/logoMenu.jpg" alt="Docente" class="docente-avatar">
+        <div>
+          <div class="docente-nombre">Profesor/a: Docente Ubuntu</div>
+          <div class="docente-rol">Autor del curso</div>
         </div>
       </div>
-      <div class="grado-card">
-        <h3>2° Grado</h3>
-        <p>Desarrollo inicial</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
-        </div>
-      </div>
-      <div class="grado-card">
-        <h3>3° Grado</h3>
-        <p>Consolidación</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
-        </div>
-      </div>
-      <div class="grado-card">
-        <h3>4° Grado</h3>
-        <p>Ampliación</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
-        </div>
-      </div>
-      <div class="grado-card">
-        <h3>5° Grado</h3>
-        <p>Profundización</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
-        </div>
-      </div>
-      <div class="grado-card">
-        <h3>6° Grado</h3>
-        <p>Preparación para secundaria</p>
-        <div class="grado-status">
-          <span class="status-badge available">Disponible</span>
+    </div>
+
+    <!-- Accordion de semanas -->
+    <div class="accordion">
+      <div class="accordion-item" *ngFor="let w of weeks; let i = index">
+        <button class="accordion-header" (click)="toggleWeek(i)">
+          <span>{{ w.title }}</span>
+          <svg [class.rotated]="w.open" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-body" *ngIf="w.open">
+          <p>{{ w.description }}</p>
         </div>
       </div>
     </div>

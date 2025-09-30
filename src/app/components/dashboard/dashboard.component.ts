@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { InicioComponent } from '../inicio/inicio.component';
 import { CursoComponent } from '../curso/curso.component';
@@ -17,13 +17,14 @@ interface Module {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, InicioComponent, CursoComponent, RecursosComponent, JuegosComponent, ContactoComponent],
+  imports: [CommonModule, RouterModule, InicioComponent, CursoComponent, RecursosComponent, JuegosComponent, ContactoComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
   sidebarCollapsed = false;
   selectedNivel: string = '';
+  selectedCourse: string = '';
   cursoDropdownOpen = false;
   isMobile = false;
   
@@ -71,12 +72,17 @@ export class DashboardComponent implements OnInit {
 
   private updateModuleFromRoute(): void {
     const moduleId = this.route.snapshot.paramMap.get('module') || 'inicio';
-    const submodule = this.route.snapshot.paramMap.get('submodule');
-    
-    this.selectModule(moduleId);
-    
-    if (submodule) {
-      this.selectedNivel = submodule;
+    const submodule = this.route.snapshot.paramMap.get('submodule') || '';
+    const course = this.route.snapshot.paramMap.get('course') || '';
+
+    // Actualizar estado desde la URL sin navegar de nuevo
+    this.selectedNivel = submodule;
+    this.selectedCourse = course;
+
+    const module = this.modules.find(m => m.id === moduleId);
+    if (module) {
+      this.currentModule = module;
+      this.updateActiveMenuItem(moduleId);
     }
   }
 
@@ -143,7 +149,5 @@ export class DashboardComponent implements OnInit {
   selectCursoSubmodule(submodule: string): void {
     this.selectedNivel = submodule;
     this.cursoDropdownOpen = false;
-    this.router.navigate(['/dashboard', 'curso', submodule]);
-    this.selectModule('curso');
   }
 }

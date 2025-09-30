@@ -99,6 +99,139 @@
   margin-bottom: 3rem;
 }
 
+/* Tarjetas de cursos con imagen */
+.curso-thumb {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.curso-card {
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.curso-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.docente-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.docente-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Cabecera detalle: título izquierda, docente derecha */
+.detalle-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.detalle-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.detalle-title {
+  margin: 0;
+}
+
+.detalle-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.crumb {
+  color: var(--ubuntu-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.crumb:hover { text-decoration: underline; }
+
+.crumb-sep { color: var(--ubuntu-gray); }
+
+.crumb.current { color: var(--ubuntu-gray); font-weight: 500; }
+
+/* Accordion */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accordion-item {
+  border: 2px solid var(--ubuntu-orange-pale);
+  border-radius: 12px;
+  background: var(--ubuntu-white);
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.accordion-header svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .15s ease;
+}
+
+.accordion-header svg.rotated {
+  transform: rotate(90deg);
+}
+
+.accordion-body {
+  padding: 0 16px 16px 16px;
+  color: var(--ubuntu-gray);
+}
+
+@media (max-width: 768px) {
+  .detalle-header {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: center;
+  }
+  .detalle-right {
+    justify-content: center;
+  }
+  .breadcrumb { justify-content: center; }
+}
+
 .back-to-selection {
   background: var(--ubuntu-orange-pale);
   border: 2px solid var(--ubuntu-orange);

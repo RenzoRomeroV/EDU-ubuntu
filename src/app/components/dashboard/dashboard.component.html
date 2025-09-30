@@ -14,7 +14,7 @@
   <nav class="sidebar" [class.collapsed]="sidebarCollapsed" [class.mobile-open]="sidebarCollapsed && isMobile">
     <div class="sidebar-header">
       <div class="ubuntu-logo">
-        <img src="assets/img/logoMenu3.png" alt="Ubuntu Education Logo" class="logo-image">
+        <img src="assets/img/logo2.0.jpg" alt="Ubuntu Education Logo" class="logo-image">
         <!--<h2 class="sidebar-title" *ngIf="!sidebarCollapsed">Ubuntu Education</h2>-->
       </div>
     </div>
@@ -63,13 +63,13 @@
       
       <!-- Submódulos que se despliegan/contraen -->
       <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
-        <div class="submenu-item-red" (click)="selectCursoSubmodule('primaria')">
+        <div class="submenu-item-red" [routerLink]="['/dashboard','curso','primaria']" (click)="selectCursoSubmodule('primaria')">
           <span class="submenu-text-red">Primaria</span>
         </div>
       </li>
       
       <li class="submenu-item-container" *ngIf="cursoDropdownOpen">
-        <div class="submenu-item-red" (click)="selectCursoSubmodule('secundaria')">
+        <div class="submenu-item-red" [routerLink]="['/dashboard','curso','secundaria']" (click)="selectCursoSubmodule('secundaria')">
           <span class="submenu-text-red">Secundaria</span>
         </div>
       </li>
@@ -125,7 +125,7 @@
       <app-inicio *ngIf="currentModule.id === 'inicio'"></app-inicio>
 
       <!-- Vista de Curso -->
-      <app-curso *ngIf="currentModule.id === 'curso'"></app-curso>
+      <app-curso *ngIf="currentModule.id === 'curso'" [selectedNivel]="selectedNivel" [selectedCourse]="selectedCourse"></app-curso>
 
       <!-- Vista de Recursos -->
       <app-recursos *ngIf="currentModule.id === 'recursos'"></app-recursos>
