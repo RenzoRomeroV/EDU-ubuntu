@@ -30,16 +30,16 @@ export class DashboardComponent implements OnInit {
   
   currentModule: Module = {
     id: 'inicio',
-    title: 'Inicio',
-    subtitle: 'Ubuntu Education'
+    title: '',
+    subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú'
   };
 
   modules: Module[] = [
-    { id: 'inicio', title: 'Inicio', subtitle: 'Bienvenido a Ubuntu Education' },
-    { id: 'curso', title: 'Cursos', subtitle: 'Primaria y Secundaria' },
-    { id: 'recursos', title: 'Recursos', subtitle: 'Materiales educativos' },
-    { id: 'juegos', title: 'Juegos', subtitle: 'Aprende jugando' },
-    { id: 'contacto', title: 'Contacto', subtitle: '¿Necesitas ayuda?' }
+    { id: 'inicio', title: '', subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú' },
+    { id: 'curso', title: '', subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú' },
+    { id: 'recursos', title: '', subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú' },
+    { id: 'juegos', title: '', subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú' },
+    { id: 'contacto', title: '', subtitle: 'UBUNTU - Jóvenes Voluntarios del Perú' }
   ];
 
   constructor(

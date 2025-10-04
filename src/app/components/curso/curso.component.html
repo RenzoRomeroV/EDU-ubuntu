@@ -1,5 +1,21 @@
 <!-- Vista de Curso -->
 <div class="curso-content">
+  <!-- Barra de navegación (breadcrumb) -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a [routerLink]="['/dashboard','curso']" class="breadcrumb-link">Curso</a>
+    <span class="breadcrumb-separator">›</span>
+    <span *ngIf="!selectedNivel" class="breadcrumb-current">Seleccionar nivel</span>
+    <ng-container *ngIf="selectedNivel">
+      <a [routerLink]="['/dashboard','curso']" class="breadcrumb-link">{{ selectedNivel | titlecase }}</a>
+      <span *ngIf="!selectedCourse" class="breadcrumb-separator">›</span>
+      <span *ngIf="!selectedCourse" class="breadcrumb-current">Seleccionar curso</span>
+      <ng-container *ngIf="selectedCourse">
+        <span class="breadcrumb-separator">›</span>
+        <span class="breadcrumb-current">{{ selectedCourse | titlecase }}</span>
+      </ng-container>
+    </ng-container>
+  </nav>
+
   <!-- Selección de nivel (cuando no hay nivel seleccionado) -->
   <div *ngIf="!selectedNivel" class="curso-selection">
     <h2>Selecciona tu Nivel Educativo</h2>
@@ -30,20 +46,14 @@
   <!-- Contenido de Primaria: Lista de cursos -->
   <div *ngIf="selectedNivel === 'primaria' && !selectedCourse" class="nivel-content">
     <div class="nivel-header">
-      <button class="back-to-selection" (click)="selectedNivel = ''">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Volver a selección
-      </button>
       <h2>🎒 Primaria (1° a 6° grado)</h2>
-      <p>Contenido educativo para estudiantes de primaria</p>
+      <!--<p>Contenido educativo para estudiantes de primaria</p>-->
     </div>
 
     <!-- Cursos de Primaria -->
     <div class="grados-grid">
       <div class="grado-card curso-card" (click)="openCourse('matematica')">
-        <img src="assets/img/portada-ubuntu.png" alt="Matemática" class="curso-thumb">
+        <img src="assets/img/matematicas.png" alt="Matemática" class="curso-thumb">
         <h3>Matemática</h3>
         <p>Números, operaciones y resolución de problemas</p>
       </div>
@@ -108,12 +118,6 @@
   <!-- Contenido de Secundaria -->
   <div *ngIf="selectedNivel === 'secundaria'" class="nivel-content">
     <div class="nivel-header">
-      <button class="back-to-selection" (click)="selectedNivel = ''">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Volver a selección
-      </button>
       <h2>🎓 Secundaria (7° a 11° grado)</h2>
       <p>Contenido educativo para estudiantes de secundaria</p>
     </div>

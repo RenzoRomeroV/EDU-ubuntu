@@ -13,14 +13,53 @@
 /* Estilos para el contenido de Curso */
 .curso-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+/* Barra de navegación (breadcrumb) principal */
+.breadcrumb-nav {
+  background: rgba(233, 84, 32, 0.1);
+  border: 1px solid rgba(233, 84, 32, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-link {
+  color: var(--ubuntu-orange);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  color: var(--ubuntu-orange-light);
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--ubuntu-gray);
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.breadcrumb-current {
+  color: var(--ubuntu-dark);
+  font-weight: 700;
 }
 
 .curso-selection h2 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--ubuntu-dark);
-  text-align: center;
+  text-align: left;
   margin: 0 0 3rem 0;
 }
 
@@ -91,11 +130,12 @@
 /* Contenido de nivel específico */
 .nivel-content {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0;
+  padding-left: 0;
 }
 
 .nivel-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
 }
 
@@ -343,6 +383,12 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .breadcrumb-nav {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 1rem 0;
+  }
+
   .nivel-cards {
     grid-template-columns: 1fr;
   }
